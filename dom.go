@@ -35,10 +35,11 @@ func pipsGenerator(T *arrTile) {
 
 func mainmenu(T arrTile, P arrPlayer) {
 	var n int
-	var name string
+	var i int = 0
 	fmt.Println("Insert name")
-	fmt.Scan(&name)
-	fmt.Println("Hello", name)
+	fmt.Scan(&P[i].name)
+	fmt.Println("Hello", P[i].name)
+	i++
 	fmt.Println()
 	fmt.Println("Please select: ")
 	fmt.Println("1. Start")
@@ -48,7 +49,7 @@ func mainmenu(T arrTile, P arrPlayer) {
 	fmt.Scan(&n)
 	if n == 1 || n == 2 || n == 3 || n == 4 {
 		if n == 1 {
-			play()
+			play(&T)
 		} else if n == 2 {
 			howtoplay()
 		} else if n == 3 {
@@ -63,11 +64,21 @@ func mainmenu(T arrTile, P arrPlayer) {
 }
 
 func howtoplay() {
+	var T arrTile
+	var P arrPlayer
+	var answer string
 	fmt.Println("These are the number that you can input to make a move")
-	fmt.Println("1 is for changing tile")
-	fmt.Println("2 is for tiling")
+	fmt.Println("1 is for changing tile 1")
+	fmt.Println("2 is for changing tile 2")
+	fmt.Println("3 is for changing tile 3")
+	fmt.Println("4 is for changing tile 4")
 	fmt.Println("0 is for done")
 	fmt.Println("9 is for exiting current game")
+	fmt.Println("Go to the main menu? {Yes/No}")
+	fmt.Scan(&answer)
+	if answer == "Yes" {
+		mainmenu(T, P)
+	}
 }
 
 func play(T *arrTile) {
@@ -78,8 +89,25 @@ func play(T *arrTile) {
 		fmt.Print("Your tiles: ", T)
 		fmt.Println("Decision? ")
 		fmt.Scan(&decision)
-		if decision == 1 
+		if decision == 1 {
+			// ganti tile 1
+		} else if decision == 2 {
+			// ganti tile 2
+		} else if decision == 3 {
+			// ganti tile 3
+		} else if decision == 4 {
+			// ganti tile 4
+		} else if decision == 9 {
+			// keluar dari match sekarang
+		} else {
+			decision = 0
+		}
 	}
+	//prtin status menang sama score
+
+}
+
+func leaderboard() {
 
 }
 
