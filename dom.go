@@ -11,3 +11,6 @@ func header() {
 	fmt.Println("Welcome to the game of Ceme-4tile")
 	fmt.Println("---------------------------------")
 }
+func main() {
+	header()
+}
