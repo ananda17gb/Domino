@@ -119,7 +119,7 @@ func play(T *arrTile) {
 }
 
 func changeTile(T *arrTile, n int) {
-
+	
 }
 
 func leaderboard() {
