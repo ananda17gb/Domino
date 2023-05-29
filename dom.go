@@ -82,21 +82,25 @@ func howtoplay() {
 }
 
 func play(T *arrTile) {
+	var player, comp arrTile
 	var decision int
 	fmt.Println("Dealing ...")
 	for decision != 0 {
 		pipsGenerator(&*T)
-		fmt.Print("Your tiles: ", T)
+		player = T
+		pipsGenerator(&*T)
+		comp = T
+		fmt.Print("Your tiles: ", player)
 		fmt.Println("Decision? ")
 		fmt.Scan(&decision)
 		if decision == 1 {
-			// ganti tile 1
+			changeTile(&*T, 1)
 		} else if decision == 2 {
-			// ganti tile 2
+			changeTile(&*T, 2)
 		} else if decision == 3 {
-			// ganti tile 3
+			changeTile(&*T, 3)
 		} else if decision == 4 {
-			// ganti tile 4
+			changeTile(&*T, 4)
 		} else if decision == 9 {
 			// keluar dari match sekarang
 		} else {
@@ -104,6 +108,10 @@ func play(T *arrTile) {
 		}
 	}
 	//prtin status menang sama score
+
+}
+
+func changeTile(T *arrTile, n int) {
 
 }
 
