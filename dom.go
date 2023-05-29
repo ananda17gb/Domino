@@ -96,16 +96,16 @@ func play(T *arrTile) {
 		fmt.Println("Decision? ")
 		fmt.Scan(&decision)
 		if decision == 1 && dec1 {
-			changeTile(&*T, 1)
+			changeTile(&player, 1)
 			dec1 = true
 		} else if decision == 2 && dec2 {
-			changeTile(&*T, 2)
+			changeTile(&player, 2)
 			dec2 = true
 		} else if decision == 3 && dec3 {
-			changeTile(&*T, 3)
+			changeTile(&player, 3)
 			dec3 = true
 		} else if decision == 4 && dec4 {
-			changeTile(&*T, 4)
+			changeTile(&player, 4)
 			dec4 = true
 		} else if decision == 9 {
 			fmt.Println("Your last score is",)
