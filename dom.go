@@ -84,6 +84,8 @@ func howtoplay() {
 func play(T *arrTile) {
 	var player, comp arrTile
 	var decision int
+	var dec1, dec2, dec3, dec4 bool = false, false, false, false
+	var score, round int = 0,0
 	fmt.Println("Dealing ...")
 	for decision != 0 {
 		pipsGenerator(&*T)
@@ -93,22 +95,27 @@ func play(T *arrTile) {
 		fmt.Print("Your tiles: ", player)
 		fmt.Println("Decision? ")
 		fmt.Scan(&decision)
-		if decision == 1 {
+		if decision == 1 && dec1 {
 			changeTile(&*T, 1)
-		} else if decision == 2 {
+			dec1 = true
+		} else if decision == 2 && dec2 {
 			changeTile(&*T, 2)
-		} else if decision == 3 {
+			dec2 = true
+		} else if decision == 3 && dec3 {
 			changeTile(&*T, 3)
-		} else if decision == 4 {
+			dec3 = true
+		} else if decision == 4 && dec4 {
 			changeTile(&*T, 4)
+			dec4 = true
 		} else if decision == 9 {
-			// keluar dari match sekarang
+			fmt.Println("Your last score is",)
+			fmt.Println("Thank you for playing with us.")
+			fmt.Print("Your winning rate is ",,"%")
+			fmt.Println()
 		} else {
 			decision = 0
 		}
 	}
-	//prtin status menang sama score
-
 }
 
 func changeTile(T *arrTile, n int) {
