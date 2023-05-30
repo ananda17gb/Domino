@@ -5,11 +5,9 @@ import (
 	"math/rand"
 )
 
-type tileNum struct {
-	d1, d2 int
-}
+type tile [2]int
 
-type arrTile [4]tileNum
+type arrTile [4]tile
 
 type player struct {
 	name         string
@@ -24,10 +22,10 @@ func header() {
 	fmt.Println()
 }
 
-func pipsGenerator(T *arrTile, n int) {
-	T[n].d1 = rand.Intn(13)
-	T[n].d2 = rand.Intn(13)
-}
+// func pipsGenerator(T *tile) {
+// 	T.d1 = rand.Intn(13)
+// 	T.d2 = rand.Intn(13)
+// }
 
 func mainmenu(T arrTile, P arrPlayer) {
 	var n int
@@ -79,44 +77,50 @@ func play(T *arrTile) {
 	fmt.Println()
 	fmt.Println("Dealing ...")
 	fmt.Println("Your score is", score, "/", round)
+	fmt.Println()
 	for decision != 0 {
 		for i := 0; i < 4; i++ {
-			pipsGenerator(&*T, i)
+			player[i][0] = rand.Intn(13)
+			player[i][1] = rand.Intn(13)
 		}
-		player = *T
 		for i := 0; i < 4; i++ {
-			pipsGenerator(&*T, i)
+			comp[i][0] = rand.Intn(13)
+			comp[i][1] = rand.Intn(13)
 		}
-		comp = *T
 		fmt.Print("Your tiles: ", player)
 		fmt.Println()
 		fmt.Println("Decision? ")
 		fmt.Scan(&decision)
-		if decision == 1 && dec1 {
-			pipsGenerator(&player, 1)
+		if decision == 1 && !dec1 {
+			player[0][0] = rand.Intn(13)
+			player[0][1] = rand.Intn(13)
+			fmt.Println("here is the updated tiles", player)
 			dec1 = true
-		} else if decision == 2 && dec2 {
-			pipsGenerator(&player, 2)
+		} else if decision == 2 && !dec2 {
+			player[1][0] = rand.Intn(13)
+			player[1][1] = rand.Intn(13)
 			dec2 = true
-		} else if decision == 3 && dec3 {
-			pipsGenerator(&player, 3)
+		} else if decision == 3 && !dec3 {
+			player[2][0] = rand.Intn(13)
+			player[2][1] = rand.Intn(13)
 			dec3 = true
-		} else if decision == 4 && dec4 {
-			pipsGenerator(&player, 4)
+		} else if decision == 4 && !dec4 {
+			player[3][0] = rand.Intn(13)
+			player[3][1] = rand.Intn(13)
 			dec4 = true
 		} else if decision == 9 {
 			fmt.Println("Your last score is", score, "/", round)
 			fmt.Println("Thank you for playing with us.")
-			fmt.Print("Your winning rate is ", score/round, "%")
+			fmt.Print("Your winning rate is ", (score*100)/round, "%")
 			fmt.Println()
 		} else if decision == 0 {
 			ppoints := 0
 			cpoints := 0
 			for i := 0; i < 4; i++ {
-				ppoints = player[i].d1 + player[i].d2
+				ppoints += player[i][0] + player[i][1]
 			}
 			for i := 0; i < 4; i++ {
-				cpoints = comp[i].d1 + comp[i].d2
+				cpoints += comp[i][0] + comp[i][1]
 			}
 			if ppoints > cpoints {
 				fmt.Println("You won")
@@ -137,7 +141,12 @@ func play(T *arrTile) {
 }
 
 // func changeTile(T *arrTile, n int) {
-
+// 	if n >= 1 && n <= 4 {
+// 		fmt.Printf("Generating new pips for Tile %d...\n", n)
+// 		tile := &((*T)[n-1])
+// 		tile.d1 = rand.Intn(13)
+// 		tile.d2 = rand.Intn(13)
+// 	}
 // }
 
 // func leaderboard() {
