@@ -22,11 +22,6 @@ func header() {
 	fmt.Println()
 }
 
-// func pipsGenerator(T *tile) {
-// 	T.d1 = rand.Intn(13)
-// 	T.d2 = rand.Intn(13)
-// }
-
 func mainmenu(T arrTile, P arrPlayer) {
 	var n int
 	var i int = 0
@@ -78,15 +73,15 @@ func play(T *arrTile) {
 	fmt.Println("Dealing ...")
 	fmt.Println("Your score is", score, "/", round)
 	fmt.Println()
-	for decision != 0 {
-		for i := 0; i < 4; i++ {
-			player[i][0] = rand.Intn(13)
-			player[i][1] = rand.Intn(13)
-		}
-		for i := 0; i < 4; i++ {
-			comp[i][0] = rand.Intn(13)
-			comp[i][1] = rand.Intn(13)
-		}
+	for i := 0; i < 4; i++ {
+		player[i][0] = rand.Intn(13)
+		player[i][1] = rand.Intn(13)
+	}
+	for i := 0; i < 4; i++ {
+		comp[i][0] = rand.Intn(13)
+		comp[i][1] = rand.Intn(13)
+	}
+	for decision != 9 {
 		fmt.Print("Your tiles: ", player)
 		fmt.Println()
 		fmt.Println("Decision? ")
@@ -94,7 +89,6 @@ func play(T *arrTile) {
 		if decision == 1 && !dec1 {
 			player[0][0] = rand.Intn(13)
 			player[0][1] = rand.Intn(13)
-			fmt.Println("here is the updated tiles", player)
 			dec1 = true
 		} else if decision == 2 && !dec2 {
 			player[1][0] = rand.Intn(13)
@@ -123,31 +117,38 @@ func play(T *arrTile) {
 				cpoints += comp[i][0] + comp[i][1]
 			}
 			if ppoints > cpoints {
+				fmt.Println()
+				fmt.Println("Opponent tiles: ", comp)
 				fmt.Println("You won")
 				score++
 				round++
 				fmt.Println("Your score is", score, "/", round)
+				fmt.Println()
 			} else if ppoints < cpoints {
+				fmt.Println()
+				fmt.Println("Opponent tiles: ", comp)
 				fmt.Println("You lost")
 				round++
 				fmt.Println("Your score is", score, "/", round)
 			} else {
+				fmt.Println()
 				fmt.Println("It's a draw, current game score will not be submitted to the total score")
+				fmt.Println()
 			}
+			for i := 0; i < 4; i++ {
+				player[i][0] = rand.Intn(13)
+				player[i][1] = rand.Intn(13)
+			}
+			for i := 0; i < 4; i++ {
+				comp[i][0] = rand.Intn(13)
+				comp[i][1] = rand.Intn(13)
+			}
+			dec1, dec2, dec3, dec4 = false, false, false, false
 		} else {
 			fmt.Println("You already input that one, please input other number displayed")
 		}
 	}
 }
-
-// func changeTile(T *arrTile, n int) {
-// 	if n >= 1 && n <= 4 {
-// 		fmt.Printf("Generating new pips for Tile %d...\n", n)
-// 		tile := &((*T)[n-1])
-// 		tile.d1 = rand.Intn(13)
-// 		tile.d2 = rand.Intn(13)
-// 	}
-// }
 
 // func leaderboard() {
 
